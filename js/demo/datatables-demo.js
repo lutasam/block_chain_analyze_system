@@ -29,42 +29,6 @@ $(document).ready(function () {
   var url = "http://localhost:9000/get_all_assets"
   $.get(url, function (data) {
     console.log("ok");
-    $('#dataTable').DataTable({
-      data: data.data.data,
-      columns: [{
-          data: 'id'
-        },
-        {
-          data: 'name'
-        },
-        {
-          data: 'media'
-        },
-        {
-          data: 'author'
-        },
-        {
-          data: 'price'
-        },
-        {
-          data: 'supply'
-        },
-        {
-          data: 'description'
-        },
-        {
-          data: 'address'
-        },
-        {
-          data: null,
-          "render": function (data, type, full, meta) {
-            var html = "<input type='text' class='risk_level_input' placeholder='请输入风险等级'>" +
-              "<button type='button' class='btn btn-success' onclick=''>确定</button>";
-            return html;
-          }
-        }
-      ]
-    });
   });
   $('#dataTable').DataTable({
     data: data.data,
@@ -96,7 +60,7 @@ $(document).ready(function () {
         data: null,
         "render": function (data, type, full, meta) {
           var html = "<input type='text' class='risk_level_input' id='risk_input' placeholder='请输入风险等级'>" +
-            "<button type='button' class='btn btn-success' onclick='addRiskLevel(this)'>确定</button>";
+            "<button type='button' class='btn btn-success btn-circle' onclick='addRiskLevel(this)'><i class='fas fa-check'></i></button>";
           return html;
         }
       }
