@@ -48,8 +48,8 @@ $(document).ready(function () {
           {
             data: null,
             "render": function (data, type, full, meta) {
-              var html = "<input type='text' class='risk_level_input' placeholder='请输入风险等级'>" +
-                "<button type='button' class='btn btn-success' onclick=''>确定</button>";
+              var html = "<input type='text' class='risk_level_input' id='risk_input' placeholder='请输入风险等级'>" +
+                "<button type='button' class='btn btn-success btn-circle' onclick='addRiskLevel(this)'><i class='fas fa-check'></i></button>";
               return html;
             }
           }
@@ -57,42 +57,6 @@ $(document).ready(function () {
       });
     },
   });
-  // $('#dataTable').DataTable({
-  //   data: data.data,
-  //   columns: [{
-  //       data: 'id'
-  //     },
-  //     {
-  //       data: 'media'
-  //     },
-  //     {
-  //       data: 'name'
-  //     },
-  //     {
-  //       data: 'author'
-  //     },
-  //     {
-  //       data: 'price'
-  //     },
-  //     {
-  //       data: 'supply'
-  //     },
-  //     {
-  //       data: 'description'
-  //     },
-  //     {
-  //       data: 'address'
-  //     },
-  //     {
-  //       data: null,
-  //       "render": function (data, type, full, meta) {
-  //         var html = "<input type='text' class='risk_level_input' id='risk_input' placeholder='请输入风险等级'>" +
-  //           "<button type='button' class='btn btn-success' onclick='addRiskLevel(this)'>确定</button>";
-  //         return html;
-  //       }
-  //     }
-  //   ]
-  // });
 });
 
 function addRiskLevel(e) {
@@ -101,16 +65,24 @@ function addRiskLevel(e) {
   console.log(id);
   console.log(riskLevel);
 
-  var url = "http://localhost:9000/set_risk_level?" +
-    "id=" + id + "&" +
-    "risk_level=" + riskLevel;
+  var url = "http://localhost:8081/set_risk_level"
   console.log(url);
-  $.post(url, {
-    id: id,
-    plaId: 1,
-    risk_level: riskLevel,
-  }, function () {
-    console.log("ok");
-    // 设置成功
-  })
+  $.ajax({
+    type: "POST",
+    url: url,
+    dataType: "JSON",
+    data: JSON.stringify({
+      "id": id,
+      "plaId": 1,
+      "risk_level": riskLevel,
+    }),
+    crossDomain: true,
+    headers: {
+      "content-type": "application/json;charset=UTF-8"
+    },
+    success: function (data) {
+      console.log("ok");
+      console.log(data.data)
+    },
+  });
 }
