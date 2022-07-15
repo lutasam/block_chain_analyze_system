@@ -11,7 +11,8 @@ $(document).ready(function () {
     }),
     crossDomain: true,
     headers: {
-      "content-type": "application/json;charset=UTF-8"
+      "content-type": "application/json;charset=UTF-8",
+      "authorization": "Bearer " + window.localStorage.getItem("token"),
     },
     success: function (data) {
       console.log("ok");
@@ -78,7 +79,8 @@ function addRiskLevel(e) {
     }),
     crossDomain: true,
     headers: {
-      "content-type": "application/json;charset=UTF-8"
+      "content-type": "application/json;charset=UTF-8",
+      "authorization": "Bearer " + window.localStorage.getItem("token"),
     },
     success: function (data) {
       console.log("ok");
