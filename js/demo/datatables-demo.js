@@ -29,9 +29,6 @@ $(document).ready(function () {
             data: 'create_time'
           },
           {
-            data: 'author_id'
-          },
-          {
             data: 'author'
           },
           {
@@ -62,7 +59,7 @@ $(document).ready(function () {
 
 function addRiskLevel(e) {
   var id = e.parentNode.parentNode.children[0].innerHTML;
-  var riskLevel = e.parentNode.parentNode.children[8].children[0].value;
+  var riskLevel = e.parentNode.parentNode.children[9].children[0].value;
   console.log(id);
   console.log(riskLevel);
 
@@ -73,9 +70,9 @@ function addRiskLevel(e) {
     url: url,
     dataType: "JSON",
     data: JSON.stringify({
-      "id": id,
-      "plaId": 1,
-      "risk_level": riskLevel,
+      "id": Number(id),
+      "plaId": String(0),
+      "risk_level": Number(riskLevel),
     }),
     crossDomain: true,
     headers: {
@@ -84,7 +81,8 @@ function addRiskLevel(e) {
     },
     success: function (data) {
       console.log("ok");
-      console.log(data.data)
+      console.log(data);
+      alert("设置成功！");
     },
   });
 }
