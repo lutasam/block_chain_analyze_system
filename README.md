@@ -1,2 +1,3 @@
 # block_chain_analyze_system
-小组项目--前端界面
+frontend interface of the block chain analyze system \br
+by bootstrap
